@@ -1,0 +1,30 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model TaskBoard {
+  id String @id @default(cuid())
+  name String
+  columns String[]
+}
+
+model Task {
+  id String @id @default(cuid())
+  name String
+  description String
+  subtasks String[]
+  status String
+  columnId String
+  boardId String
+}
+
+model TaskColumn {
+  id String @id @default(cuid())
+  columns String[]
+}
